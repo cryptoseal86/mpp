@@ -1106,6 +1106,48 @@ export const services: ServiceDef[] = [
     ],
   },
 
+  {
+    id: "funding-rates",
+    name: "Funding Rates",
+    url: "https://funding-rates.data-mpp.cloud/",
+    serviceUrl: "https://funding-rates.data-mpp.cloud/",
+    description:
+      "Real-time perpetuals funding rates and cross-venue arbitrage spreads. Single-venue current rate, per-symbol summary, and ranked best-spread arbitrage pair — decision-ready for trading agents.",
+
+    categories: ["data", "blockchain"],
+    integration: "third-party",
+    tags: [
+      "funding-rates",
+      "perpetuals",
+      "arbitrage",
+      "derivatives"
+    ],
+    docs: {
+      apiReference: "https://funding-rates.data-mpp.cloud/openapi.json",
+    },
+    provider: { name: "Data MPP Labs", url: "https://data-mpp.cloud" },
+    realm: "funding-rates",
+    intent: "charge",
+    payments: [TEMPO_PAYMENT],
+    endpoints: [
+      {
+        route: "GET /v1/funding/current",
+        desc: "Latest normalized funding rates per symbol/venue",
+        amount: "10000",
+      },
+      {
+        route: "GET /v1/funding/arbitrage",
+        desc: "Ranked cross-venue funding-rate arbitrage opportunities",
+        amount: "50000",
+      },
+      {
+        route: "GET /v1/funding/summary/:symbol",
+        desc: "Per-venue funding summary for a symbol",
+        amount: "10000",
+      },
+    ],
+  },
+
   // ── GovLaws ────────────────────────────────────────────────────────────
   {
     id: "govlaws",
